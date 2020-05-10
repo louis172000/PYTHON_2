@@ -1,4 +1,34 @@
-from partie1 import *
+class Node:
+    def __init__(self, val, right, left):
+        self.__val = val
+        self.__right = right
+        self.__left = left
+
+    def get_val(self):
+        return self.__val
+
+    def get_right(self):
+        return self.__right
+
+    def get_left(self):
+        return self.__left
+
+    def set_right(self, new_right):
+        self.__right = new_right
+
+    def set_left(self, new_left):
+        self.__left = new_left
+
+    def __str__(self):
+        return self.__val
+
+
+"""
+
+node : c'est le noeud et left right sont les prochains noeuds -> voir liste chainées ??? 
+
+"""
+
 
 class BinaryTree:
     def __init__(self, root):
@@ -83,4 +113,10 @@ node12 = Node(12, node17, node5)
 
 root = BinaryTree(node12)
 
-print(root.size(node12))
+# print(root.size(node12))
+# print(root.printValues(node12))
+# print(root.sumValues(node12))
+# print(root.numberLeaves(node12))
+# print(root.numberInternalNode(node12))
+# print(root.height(node12))
+# print(root.belongs(node12, 18))
