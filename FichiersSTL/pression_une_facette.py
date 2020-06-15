@@ -12,9 +12,10 @@ def forcePressanteFacette(a,b,c,n):
 
     surfaceSurNormale = [normeScalaireSurDeux*n[0],normeScalaireSurDeux*n[1],normeScalaireSurDeux*n[2]]
 
+    z = (a[2]+b[2]+c[2])/3
+
     rho = 1000
     g = 9.81
-    forcePressante = [surfaceSurNormale[0]*rho*g,surfaceSurNormale[1]*rho*g,surfaceSurNormale[2]*rho*g]
+    forcePressante = [surfaceSurNormale[0]*rho*g*z,surfaceSurNormale[1]*rho*g*z,surfaceSurNormale[2]*rho*g*z]
 
     return forcePressante
-
