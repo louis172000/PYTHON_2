@@ -18,13 +18,3 @@ def forcePressanteFacette(a,b,c,n):
 
     return forcePressante
 
-
-
-
-#test Programme
-a = [2,1,-2]
-b = [1,2,-3]
-c = [5,1,-3]
-n = [0,-1,1]
-
-print(forcePressanteFacette(a,b,c,n))
