@@ -36,7 +36,6 @@ def creation_liste_globale(ligne):
         # la liste_triangle à été ajoutée
         liste_triangle = []
 
-    print("liste globale :", liste_globale)
     return liste_globale
 
 ############################################################################
@@ -53,4 +52,6 @@ print("Structure composée de :", nb_triangles, "triangles")
 print("""clasée de la façon suivante: liste_globale = [coordonées du triangle1 (type:liste), coordonées du triangle2 (type:liste), ...]
 """)
 
-creation_liste_globale(ligne)
+liste_globale = creation_liste_globale(ligne)
+print("liste globale :", liste_globale)
+
