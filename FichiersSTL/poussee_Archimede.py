@@ -1,14 +1,3 @@
-import numpy as np
-
-sommeForcePression = 0
-
-matrice = np.array([
-    [1,2,3,     6,5,-4,     7,8,-9,     12,11,-10],
-    [13,14,15,  18,17,16,  19,20,21,  24,23,22],
-    [25,26,27,  30,29,28,  31,32,33,  36,35,34],
-])
-
-
 def pousseeTotale(ligneMatrice):
     if ligneMatrice[5]<=0 and ligneMatrice[8]<=0 and ligneMatrice[11]<=0 :
         ab = [ligneMatrice[6]-ligneMatrice[3],ligneMatrice[7]-ligneMatrice[4],ligneMatrice[8]-ligneMatrice[5]]
@@ -32,5 +21,3 @@ def archimede(matrice):
     pousseArchimede = [somme[0]*rho*g,somme[1]*rho*g,somme[2]*rho*g]
 
     return pousseArchimede
-
-print(archimede(matrice))
