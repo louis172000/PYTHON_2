@@ -14,7 +14,8 @@ def pousseeTotale(ligneMatrice):
 def archimede(matrice):
     somme = [0,0,0]
     for i in matrice:
-        somme = [somme[0]+pousseeTotale(i)[0],somme[1]+pousseeTotale(i)[1],somme[2]+pousseeTotale(i)[2]]
+        poussee = pousseeTotale(i)
+        somme = [somme[0]+poussee[0],somme[1]+poussee[1],somme[2]+poussee[2]]
 
     rho = 1000
     g = 9.81
