@@ -1,5 +1,5 @@
 import numpy as np
-fichier = open("FichiersSTL/Rectangular_HULL.stl")
+fichier = open("FichiersSTL/Cylindrical_HULL.stl")
 
 ############################################################################
 #############             Definitions de fonctions             #############
@@ -17,7 +17,7 @@ def fonction_coordonnees_globales(liste, liste_triangle):
 def creation_liste_globale(ligne):
     liste_globale = []
     liste_triangle = []
-    for iteration in range(0, nb_triangles-1):
+    for iteration in range(0, nb_triangles):
         fin_de_lignenormale = (ligne[0+7*iteration])[15:]                   # récupere les derniers éléments de la ligne
         fonction_coordonnees_globales(fin_de_lignenormale, liste_triangle)
 
@@ -53,5 +53,5 @@ print("""clasée de la façon suivante: liste_globale = [coordonées du triangle
 """)
 
 liste_globale = creation_liste_globale(ligne)
-print("liste globale :", liste_globale)
+# print("liste globale :", liste_globale)
 
