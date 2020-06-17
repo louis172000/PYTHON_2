@@ -20,12 +20,13 @@ class Window(QWidget):
         QWidget.__init__(self)
         self.setWindowTitle("IHM")
 
-
         self.affichageverticalprincipal = QVBoxLayout()
         self.setMinimumSize(400, 400)
-        self.Buttons = ButtonsPanel()
-        self.affichageverticalprincipal.addWidget(self.Buttons)
+        self.buttons = ButtonsPanel()
+        self.affichageverticalprincipal.addWidget(self.buttons)
 
+        self.graphiques = H2layout()
+        self.affichageverticalprincipal.addWidget(self.graphiques)
 
         #rafraichissement
         # self.canvas.draw()
@@ -37,47 +38,45 @@ class Window(QWidget):
 class ButtonsPanel(QWidget):
     def __init__(self):
         QWidget.__init__(self)
-        self.Hlayout = QHBoxLayout()
 
-        self.label_load_3dmodel = QPushButton("Load 3D model")
-        self.label_load_image = QPushButton("Load Image")
+        self.H1Layout = QHBoxLayout()
+        self.button_load_3dmodel = QPushButton("Load 3D model")
+        self.button_load_image = QPushButton("Load Image")
         self.button_compute = QPushButton("Compute")
+        self.H1Layout.addWidget(self.button_load_3dmodel)
+        self.H1Layout.addWidget(self.button_load_image)
+        self.H1Layout.addWidget(self.button_compute)
 
-        self.Hlayout.addWidget(self.label_load_3dmodel)
-        self.Hlayout.addWidget(self.label_load_image)
-        self.Hlayout.addWidget(self.button_compute)
+        H2 = H2layout()
 
+        self.button_compute.clicked.connect(H2.graphique_affichage)
+        self.setLayout(self.H1Layout)
+
+
+class H2layout(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
+
+        self.H2layout = QHBoxLayout()
         self.fig = plt.figure()
         self.canvas = FigureCanvas(self.fig)
         self.axes = plt.axes(projection='3d')
-        self.Hlayout.addWidget(self.canvas)
-        # self.Horlayout = QHBoxLayout()
+        self.H2layout.addWidget(self.canvas)
 
-
-        # self.label_load_3dmodel.clicked.connect(self.liste_models)
-        # self.label_compute.clicked.connect(self.graphique_affichage)
-
-        self.button_compute.clicked.connect(self.graphique_affichage)
-        self.setLayout(self.Hlayout)
-
-    def liste_models(self):
-        self.grid.repaint()
+        self.setLayout(self.H2layout)
+        # self.graphique_affichage()
 
     def graphique_affichage(self):
-        print(1)
 
         # Load the STL files and add the vectors to the plot
-        your_mesh = mesh.Mesh.from_file('STL_Normals_Outward\\Mini650_HULL_Normals_Outward.STL')
+        your_mesh = mesh.Mesh.from_file('FichiersSTL\\Mini650_HULL_Normals_Outward.STL')
         self.axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors))
 
         # Auto scale to the mesh size
         scale = your_mesh.points.flatten('C')
         self.axes.auto_scale_xyz(scale, scale, scale)
 
-        # self.Hlayout.addWidget(self.canvas)
-        # self.Widget(self.Horlayout)
-        # self.addWidget(self.canvas)
-
+        self.setLayout(self.H2layout)
 
 
 app = QApplication([])
