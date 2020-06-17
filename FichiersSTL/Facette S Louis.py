@@ -1,5 +1,5 @@
 import numpy as np
-fichier = open("FichiersSTL/Cylindrical_HULL.stl")
+fichier = open("STL_Normals_Outward\\Cylindrical_HULL_Normals_Outward.STL")
 
 ############################################################################
 #############             Definitions de fonctions             #############
@@ -53,5 +53,8 @@ print("""clasée de la façon suivante: liste_globale = [coordonées du triangle
 """)
 
 liste_globale = creation_liste_globale(ligne)
-# print("liste globale :", liste_globale)
+if len(liste_globale) >= 5500:
+    print("la liste est trop grande pour être affichée")
+else:
+    print("liste globale :", liste_globale)
 
