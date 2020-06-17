@@ -80,4 +80,4 @@ def archimede(objet):
 
 objetEtudie = listeSTL(fichier)
 print("Objet Etudié :",objetEtudie)
-print("poussée d'archimède",archimede(objetEtudie))
+print("poussée d'archimède maximale",archimede(objetEtudie))
