@@ -1,25 +1,17 @@
 #Calcul de la force de pression sur une facette
 
 
-def forcePressanteFacette(a,b,c,n):
-    if a[0]<=0 and b[0]<=0 and c[0]<=0 :
-        ab = [b[0]-a[0],b[1]-a[1],b[2]-a[2]]
-
-        ac = [c[0]-a[0],c[1]-a[1],c[2]-a[2]]
-
+def forcePressanteFacette(facette):
+    if facette[5]<=0 and facette[8]<=0 and facette[11]<=0 :                                                        #si la facette est imergée, on calcul la pression de l'eau sur celle-ci
+        ab = [facette[6]-facette[3],facette[7]-facette[4],facette[8]-facette[5]]
+        ac = [facette[9]-facette[3],facette[10]-facette[4],facette[11]-facette[5]]
         ab_scalaire_ac = [ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]]
-
         normeScalaireSurDeux = (((ab_scalaire_ac[0]**2)+(ab_scalaire_ac[1]**2)+(ab_scalaire_ac[2]**2))**(1/2))/2
-
-        surfaceSurNormale = [normeScalaireSurDeux*n[0],normeScalaireSurDeux*n[1],normeScalaireSurDeux*n[2]]
-
-        z = (a[2]+b[2]+c[2])/3
-
+        surfaceSurNormale = [normeScalaireSurDeux*facette[0],normeScalaireSurDeux*facette[1],normeScalaireSurDeux*facette[2]]
+        z = (facette[5]+facette[8]+facette[11])/3
         rho = 1000
         g = 9.81
         forcePressante = [surfaceSurNormale[0]*rho*g*z,surfaceSurNormale[1]*rho*g*z,surfaceSurNormale[2]*rho*g*z]
-
-    elif a[0]>=0 and b[0]>=0 and c[0]>=0 :
-        forcePressante = [0,0,0]
-
-    return forcePressante
+        return forcePressante
+    elif facette[5]>=0 and facette[8]>=0 and facette[11]>=0 :
+        return [0,0,0]
