@@ -1,7 +1,7 @@
 fichier = open("FichiersSTL/V_HULL_Normals_Outward.stl")
 
 ############################################################################
-#############             Definitions de fonctions             #############
+############   Test de la fonction de la poussée d'Archimède   #############
 ############################################################################
 
 
