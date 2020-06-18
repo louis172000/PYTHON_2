@@ -55,7 +55,7 @@ def interieurSommeArchimede(facette):
         interieurSomme = [surfaceParNormale[0]*z, surfaceParNormale[1]*z, surfaceParNormale[2]*z]
         return interieurSomme
 
-    elif facette[5] <= 0 and facette[8] <= 0 and facette[11] <= 0:
+    else :
         return [0, 0, 0]
 
 
