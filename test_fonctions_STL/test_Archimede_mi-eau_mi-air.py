@@ -1,9 +1,15 @@
+############################################################################
+############   Test de la fonction de la poussée d'Archimède   #############
+############################################################################
+
+
+############### fonctions générales ###############
+
 def fonction_coordonnees_globales(liste, liste_triangle):
     liste = liste.split(" ")
     for i in range(0, len(liste)):
         liste[i] = float(liste[i])
         liste_triangle.append(liste[i])                 # ajoute les coordonnées (du type float) à la liste du triangle en question
-    # print("liste :", liste)
 
 
 def listeSTL(fichier):
@@ -37,11 +43,7 @@ def listeSTL(fichier):
 
 
 
-
-
-
 def pointZ0(a,b):
-    #print("a :",a[2],"b :",b[2])
     if a[2]!= b[2]:
         xC = ((a[2]*b[0])-(b[2]*a[0]))/(a[2]-b[2])
         yC = ((a[1]*b[2])-(a[2]*b[1]))/(b[2]-a[2])
@@ -49,34 +51,16 @@ def pointZ0(a,b):
     else:
         return [0,0,0]
 
-#                      A         B          C
-                   #########  ########  #########
-facette = [0,0,0,  4,0,-0.5,  4,1,-0.5,  4,1,0.5]
 
-if facette[5]>=0 and facette[8]<=0 and facette[11]<=0 :                                                      #seul le premier point a son z>0
-    memoirePointPositif = [facette[3],facette[4],facette[5]]
-    premierNewPoint  = pointZ0([facette[3],facette[4],facette[5]],[facette[6],facette[7],facette[8]])
-    deuxiemeNewPoint = pointZ0([facette[3],facette[4],facette[5]],[facette[9],facette[10],facette[11]])
-    #print(premierNewPoint)
-    #print(deuxiemeNewPoint)
-elif facette[5]<=0 and facette[8]>=0 and facette[11]<=0 :                                                      #seul le deuxieme point a son z>0
-    memoirePointPositif = [facette[6],facette[7],facette[8]]
-    premierNewPoint  = pointZ0([facette[6],facette[7],facette[8]],[facette[3],facette[4],facette[5]])
-    deuxiemeNewPoint = pointZ0([facette[6],facette[7],facette[8]],[facette[9],facette[10],facette[11]])
-    #print(premierNewPoint)
-    #print(deuxiemeNewPoint)
-elif facette[5]<=0 and facette[8]<=0 and facette[11]>=0 :                                                      #seul le dernier point a son z>0
-    memoirePointPositif = [facette[9],facette[10],facette[11]]
-    premierNewPoint  = pointZ0([facette[9],facette[10],facette[11]],[facette[3],facette[4],facette[5]])
-    deuxiemeNewPoint = pointZ0([facette[9],facette[10],facette[11]],[facette[6],facette[7],facette[8]])
-    #print(premierNewPoint)
-    #print(deuxiemeNewPoint)
+def Translate(translation, STL):
+    for i in range(0, len(STL)):
+        STL[i][5] += translation
+        STL[i][8] += translation
+        STL[i][11] += translation
+    return STL
 
 
-
-#########################################################################################
-####### Test de la fonction de l'intérieur de la somme de la poussée d'Archimède ########
-#########################################################################################
+############### fonction de la poussée d'Archimède ###############
 
 def interieurSommeArchimede(facette):
     if facette[5]>0 and facette[8]>0 and facette[11]<=0 :
@@ -106,6 +90,7 @@ def interieurSommeArchimede(facette):
         return [0,0,0]
     else:
         return [0,0,0]
+
 
 def archimede(objet):
     somme = [0,0,0]
@@ -140,22 +125,20 @@ def archimede(objet):
         else:
             interieurSomme = interieurSommeArchimede(i)
             somme = [somme[0]+interieurSomme[0], somme[1]+interieurSomme[1], somme[2]+interieurSomme[2]]
+
     rho = 1000
     g = 9.81
     pousseArchimede = [somme[0]*rho*g, somme[1]*rho*g, somme[2]*rho*g]
     return pousseArchimede
 
 
-def Translate(translation, STL):
-    for i in range(0, len(STL)):
-        STL[i][5] += translation
-        STL[i][8] += translation
-        STL[i][11] += translation
-    return STL
+############################################################################
+############   Test de la fonction de la poussée d'Archimède   #############
+############################################################################
 
 
-fichier = open("FichiersSTL/Cylindrical_HULL_Normals_Outward.stl")
+fichier = open("FichiersSTL/Rectangular_HULL_Normals_Outward.stl")
 objetEtudie = listeSTL(fichier)
-Translate(-0.5,objetEtudie)
+Translate(-0.25,objetEtudie)
 print("poussée d'archimède maximale",archimede(objetEtudie))
 
