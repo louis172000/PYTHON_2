@@ -1,5 +1,3 @@
-fichier = open("FichiersSTL/V_HULL_Normals_Outward.stl")
-
 ############################################################################
 ############   Test de la fonction de la poussée d'Archimède   #############
 ############################################################################
@@ -10,8 +8,6 @@ def fonction_coordonnees_globales(liste, liste_triangle):
     for i in range(0, len(liste)):
         liste[i] = float(liste[i])
         liste_triangle.append(liste[i])                 # ajoute les coordonnées (du type float) à la liste du triangle en question
-    # print("liste :", liste)
-
 
 def listeSTL(fichier):
     # ouverture fichier + insertion des lignes dans une liste : nb_triangle
@@ -47,6 +43,7 @@ liste_globale = [coordonées du triangle1 (type:liste), coordonées du triangle2
     return liste_globale
 
 
+
 def interieurSommeArchimede(facette):
     if facette[5] >= 0 and facette[8] >= 0 and facette[11] >= 0:
         ab = [facette[6]-facette[3], facette[7]-facette[4], facette[8]-facette[5]]
@@ -77,7 +74,7 @@ def archimede(objet):
 #############                   Main program                   #############
 ############################################################################
 
-
+fichier = open("FichiersSTL/Rectangular_HULL_Normals_Outward.stl")
 objetEtudie = listeSTL(fichier)
 print("Objet Etudié :",objetEtudie)                                              #Il est possible que si le nombre de facette dépasse les 5500 l'affichage ne soit pas complet
 print("poussée d'archimède maximale",archimede(objetEtudie))
