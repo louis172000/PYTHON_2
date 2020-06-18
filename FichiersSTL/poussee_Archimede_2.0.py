@@ -37,10 +37,9 @@ def interieurSommeArchimede(facette):
         interieurSomme = [surfaceSurNormale[0]*z,surfaceSurNormale[1]*z,surfaceSurNormale[2]*z]
         return interieurSomme
 
-    elif facette[5]>=0 and facette[8]>=0 and facette[11]>=0 :                                                #si la facette n'est pas immergée, on ne calcul pas la pression de l'eau sur celle-ci
-        return [0,0,0]
     else:
         return [0,0,0]
+
 
 ############### fonction de la poussée d'Archimède ###############
 
