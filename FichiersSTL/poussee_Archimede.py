@@ -14,7 +14,7 @@ def interieurSommeArchimede(facette):                                           
         interieurSomme = [surfaceParNormale[0]*z,surfaceParNormale[1]*z,surfaceParNormale[2]*z]
         return interieurSomme
 
-    elif facette[5]>=0 and facette[8]>=0 and facette[11]>=0 :                                            #si la facette n'est pas du tout immergée, la pression sur celle-ci est négigeable
+    else :                                                                                               #si la facette n'est pas du tout immergée, la pression sur celle-ci est négigeable
         return [0,0,0]
 
 
