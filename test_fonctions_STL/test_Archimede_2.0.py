@@ -92,36 +92,36 @@ def interieurSommeArchimede(facette):
 
 def archimede(objet):
     somme = [0,0,0]
-    for i in objet:
-        if i[5]>=0 and i[8]<0 and i[11]<0 :
-            premierNewPoint  = pointZ0([i[3],i[4],i[5]],[i[6],i[7],i[8]])
-            deuxiemeNewPoint = pointZ0([i[3],i[4],i[5]],[i[9],i[10],i[11]])
-            premierNewTriangle = [i[0],i[1],i[2],i[3],i[4],i[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],i[9],i[10],i[11]]
-            deuxiemeNewTriangle = [i[0],i[1],i[2],i[3],i[4],i[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],deuxiemeNewPoint[0],deuxiemeNewPoint[1],deuxiemeNewPoint[2]]
+    for facette2 in objet:
+        if facette2[5]>=0 and facette2[8]<0 and facette2[11]<0 :                                                                # A positif
+            premierNewPoint  = pointZ0([facette2[3],facette2[4],facette2[5]],[facette2[6],facette2[7],facette2[8]])             # Calcul de B'
+            deuxiemeNewPoint = pointZ0([facette2[3],facette2[4],facette2[5]],[facette2[9],facette2[10],facette2[11]])           # Calcul de C'
+            premierNewTriangle = [facette2[0],facette2[1],facette2[2],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],facette2[6],facette2[7],facette2[8],facette2[9],facette2[10],facette2[11]]                               # Triangle B'BC
+            deuxiemeNewTriangle = [facette2[0],facette2[1],facette2[2],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],deuxiemeNewPoint[0],deuxiemeNewPoint[1],deuxiemeNewPoint[2],facette2[9],facette2[10],facette2[11]]      # Triangle B'C'C
             interieurSommePremierTriangle = interieurSommeArchimede(premierNewTriangle)
             interieurSommeDeuxiemeTriangle = interieurSommeArchimede(deuxiemeNewTriangle)
             somme = [somme[0]+interieurSommePremierTriangle[0]+interieurSommeDeuxiemeTriangle[0], somme[1]+interieurSommePremierTriangle[1]+interieurSommeDeuxiemeTriangle[1], somme[2]+interieurSommePremierTriangle[2]+interieurSommeDeuxiemeTriangle[2]]
 
-        elif i[5]<0 and i[8]>=0 and i[11]<0 :
-            premierNewPoint  = pointZ0([i[6],i[7],i[8]],[i[3],i[4],i[5]])
-            deuxiemeNewPoint = pointZ0([i[6],i[7],i[8]],[i[9],i[10],i[11]])
-            premierNewTriangle = [i[0],i[1],i[2],i[3],i[4],i[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],i[9],i[10],i[11]]
-            deuxiemeNewTriangle = [i[0],i[1],i[2],i[3],i[4],i[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],deuxiemeNewPoint[0],deuxiemeNewPoint[1],deuxiemeNewPoint[2]]
+        elif facette2[5]<0 and facette2[8]>=0 and facette2[11]<0 :                                                              # B positif
+            premierNewPoint  = pointZ0([facette2[6],facette2[7],facette2[8]],[facette2[3],facette2[4],facette2[5]])             # Calcul de A'
+            deuxiemeNewPoint = pointZ0([facette2[6],facette2[7],facette2[8]],[facette2[9],facette2[10],facette2[11]])           # Calcul de C'
+            premierNewTriangle = [facette2[0],facette2[1],facette2[2],facette2[3],facette2[4],facette2[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],facette2[9],facette2[10],facette2[11]]                                # Triangle AA'C
+            deuxiemeNewTriangle = [facette2[0],facette2[1],facette2[2],deuxiemeNewPoint[0],deuxiemeNewPoint[1],deuxiemeNewPoint[2],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],facette2[9],facette2[10],facette2[11]]       # Triangle C'A'C
             interieurSommePremierTriangle = interieurSommeArchimede(premierNewTriangle)
             interieurSommeDeuxiemeTriangle = interieurSommeArchimede(deuxiemeNewTriangle)
             somme = [somme[0]+interieurSommePremierTriangle[0]+interieurSommeDeuxiemeTriangle[0], somme[1]+interieurSommePremierTriangle[1]+interieurSommeDeuxiemeTriangle[1], somme[2]+interieurSommePremierTriangle[2]+interieurSommeDeuxiemeTriangle[2]]
 
-        elif i[5]<0 and i[8]<0 and i[11]>=0 :
-            premierNewPoint  = pointZ0([i[9],i[10],i[11]],[i[3],i[4],i[5]])
-            deuxiemeNewPoint = pointZ0([i[9],i[10],i[11]],[i[6],i[7],i[8]])
-            premierNewTriangle = [i[0],i[1],i[2],i[3],i[4],i[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],i[9],i[10],i[11]]
-            deuxiemeNewTriangle = [i[0],i[1],i[2],i[3],i[4],i[5],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2],deuxiemeNewPoint[0],deuxiemeNewPoint[1],deuxiemeNewPoint[2]]
+        elif facette2[5]<0 and facette2[8]<0 and facette2[11]>=0 :                                                              # C positif
+            premierNewPoint  = pointZ0([facette2[9],facette2[10],facette2[11]],[facette2[3],facette2[4],facette2[5]])           # Calcul de A'
+            deuxiemeNewPoint = pointZ0([facette2[9],facette2[10],facette2[11]],[facette2[6],facette2[7],facette2[8]])           # Calcul de B'
+            premierNewTriangle = [facette2[0],facette2[1],facette2[2],facette2[3],facette2[4],facette2[5],facette2[6],facette2[7],facette2[8],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2]]                                  # Triangle ABA'
+            deuxiemeNewTriangle = [facette2[0],facette2[1],facette2[2],deuxiemeNewPoint[0],deuxiemeNewPoint[1],deuxiemeNewPoint[2],facette2[6],facette2[7],facette2[8],premierNewPoint[0],premierNewPoint[1],premierNewPoint[2]]         # Triangle B'BA'
             interieurSommePremierTriangle = interieurSommeArchimede(premierNewTriangle)
             interieurSommeDeuxiemeTriangle = interieurSommeArchimede(deuxiemeNewTriangle)
             somme = [somme[0]+interieurSommePremierTriangle[0]+interieurSommeDeuxiemeTriangle[0], somme[1]+interieurSommePremierTriangle[1]+interieurSommeDeuxiemeTriangle[1], somme[2]+interieurSommePremierTriangle[2]+interieurSommeDeuxiemeTriangle[2]]
 
         else:
-            interieurSomme = interieurSommeArchimede(i)
+            interieurSomme = interieurSommeArchimede(facette2)
             somme = [somme[0]+interieurSomme[0], somme[1]+interieurSomme[1], somme[2]+interieurSomme[2]]
 
     rho = 1000
@@ -137,6 +137,6 @@ def archimede(objet):
 
 fichier = open("FichiersSTL/Rectangular_HULL_Normals_Outward.stl")
 objetEtudie = listeSTL(fichier)
-Translate(-0.5,objetEtudie)
+Translate(-0.25,objetEtudie)
 print("poussée d'archimède maximale",archimede(objetEtudie))
 
