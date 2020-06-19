@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-fichier = open("STL_Normals_Outward/Rectangular_HULL_Normals_Outward.STL")
+fichier = open("FichiersSTL/Cylindrical_HULL_Normals_Outward.STL")
 
 ############################################################################
 #############             Definitions de fonctions             #############
@@ -29,8 +29,8 @@ def listeSTL(fichier):
     liste_triangle = []
     #print("Structure composée de :", nb_triangles, "triangles")
     #print("""Classée de la façon suivante:
-#liste_globale = [coordonées du triangle1 (type:liste), coordonées du triangle2 (type:liste), ...]
-#""")
+    # liste_globale = [coordonées du triangle1 (type:liste), coordonées du triangle2 (type:liste), ...]
+    # """)
     # récupération des coordonnées d'un triangle + sa normale et l'inclue dans la liste globale
     for iteration in range(0, nb_triangles):
         fin_de_lignenormale = (ligne[0+7*iteration])[15:]                   # récupère les derniers éléments de la ligne
@@ -63,6 +63,8 @@ def interieurSommeArchimede(facette):
 
     elif facette[5] <= 0 and facette[8] <= 0 and facette[11] <= 0:
         return [0, 0, 0]
+    else:
+        [0, 0, 0]
 
 
 def archimede(objet):
@@ -95,7 +97,6 @@ def dichotomie(f,Zga,Zgb,eps,masse,STL):
 
     #Image des bornes de l'intervalle
     fZga = f(Zga,Archimede,Poids)
-    fZgb = f(Zgb,Archimede,Poids)
 
     #Compteur d'itérations
     n = 0
@@ -112,13 +113,9 @@ def dichotomie(f,Zga,Zgb,eps,masse,STL):
         if fZga*fZgm < 0:
             Zgb = Zgm
             #print(Zgm)
-            fZgb = fZgm
-            #print(Zgm)
         else :
             Zga = Zgm
-            #print(Zgm)
             fZga = fZgm
-        #print(Translate(Zgm,STL))
         #print(Zgm)
 
         #Ajout de l'itération à chaque tour de boucle
@@ -145,7 +142,7 @@ objetEtudier = listeSTL(fichier)
 
 
 
-x=np.array(dichotomie(f,-40,40,0.001,4000,objetEtudier)[1])
-y=np.array(dichotomie(f,-40,40,0.001,4000,objetEtudier)[2])
-plt.plot(x,y)
+x = np.array(dichotomie(f,-40,40,0.001,4000,objetEtudier)[1])
+y = np.array(dichotomie(f,-40,40,0.001,4000,objetEtudier)[2])
+plt.plot(x, y)
 plt.show()
