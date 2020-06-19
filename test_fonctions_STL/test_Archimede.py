@@ -3,6 +3,8 @@
 ############################################################################
 
 
+############### fonctions générales ###############
+
 def fonction_coordonnees_globales(liste, liste_triangle):
     liste = liste.split(" ")
     for i in range(0, len(liste)):
@@ -58,6 +60,8 @@ def interieurSommeArchimede(facette):
     else :
         return [0, 0, 0]
 
+
+############### fonction de la poussée d'Archimède ###############
 
 def archimede(objet):
     somme = [0,0,0]
