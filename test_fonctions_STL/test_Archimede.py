@@ -2,6 +2,7 @@
 ############   Test de la fonction de la poussée d'Archimède   #############
 ############################################################################
 
+#Ici nous étudions la poussée d'Archimède d'un objet en prenant en compte seulement les facettes complétement immergées
 
 ############### fonctions générales ###############
 
@@ -44,7 +45,7 @@ liste_globale = [coordonées du triangle1 (type:liste), coordonées du triangle2
 
     return liste_globale
 
-def Translate(translation, STL):                                                    # Fonction qui permet de translater l'objet selon z
+def Translate(translation, STL):                                                    # Fonction qui permet de translater l'objet selon z, simplement pour le test
     for i in range(0, len(STL)):
         STL[i][5] += translation
         STL[i][8] += translation
@@ -80,6 +81,7 @@ def archimede(objet):                                                           
 
     return pousseArchimede
 
+
 ############################################################################
 #############                   Main program                   #############
 ############################################################################
@@ -87,5 +89,5 @@ def archimede(objet):                                                           
 fichier = open("FichiersSTL/Cylindrical_HULL_Normals_Outward.stl")
 objetEtudie = listeSTL(fichier)
 print("Objet Etudié :",objetEtudie)                                              #Il est possible que si le nombre de facette dépasse les 5500 l'affichage ne soit pas complet
-Translate(-1,objetEtudie)
+Translate(-1,objetEtudie)                                                        #modifie le z de l'objet
 print("poussée d'archimède maximale",archimede(objetEtudie))
