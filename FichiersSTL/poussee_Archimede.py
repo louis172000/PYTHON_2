@@ -2,8 +2,9 @@
 ###################  Fonction de la poussé d'Archimède   ########################
 #################################################################################
 
+#Poussée d'Archimède sur un objet en prenant en compte seulement les facettes complétement immergées
 
-def interieurSommeArchimede(facette):                                                                    #Calcul de l'intérieur de la somme de la formule d'Archimède
+def interieurSommeArchimede(facette):                                                                    #Calcul de l'intérieur de la somme de la poussée d'Archimède
     if facette[5]<=0 and facette[8]<=0 and facette[11]<=0 :                                              #si la facette est entièrement immergée, on calcul la pression de l'eau sur celle-ci
         ab = [facette[6]-facette[3],facette[7]-facette[4],facette[8]-facette[5]]
         ac = [facette[9]-facette[3],facette[10]-facette[4],facette[11]-facette[5]]
@@ -20,7 +21,7 @@ def interieurSommeArchimede(facette):                                           
 
 def archimede(objet):                                                                                    #calcul de la poussée d'Archimède sur un objet composé d'un certain nombre de facette
     somme = [0,0,0]
-    for i in objet:                                                                                      #Calcul de la somme de la formule d'Archimède
+    for i in objet:                                                                                      #Calcul de la somme de la poussée d'Archimède
         interieurSomme = interieurSommeArchimede(i)
         somme = [somme[0]+interieurSomme[0],somme[1]+interieurSomme[1],somme[2]+interieurSomme[2]]
     rho = 1000
