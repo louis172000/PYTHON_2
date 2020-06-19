@@ -2,10 +2,11 @@
 ############## Test de la fonction de la force de pression sur une facette ##############
 #########################################################################################
 
+#Pression de l'eau sur une facette qui est soit complétement immergée, soit qui a deux point à z>0
 
 ############## fonction générale ##############
 
-def pointZ0(a,b):
+def pointZ0(a,b):                                               #fonction permettant de trouver le point à z=0 entre un point à z>0 et un point à z<0
     if a[2]!= b[2]:
         xC = ((a[2]*b[0])-(b[2]*a[0]))/(a[2]-b[2])
         yC = ((a[1]*b[2])-(a[2]*b[1]))/(b[2]-a[2])
@@ -17,6 +18,7 @@ def pointZ0(a,b):
 ############## fonction de la pression sur une facette ##############
 
 def forcePressanteFacette(facette):
+    #Nous réduisons la facette si elle a deux point à z>0, afin d'avoir sa partie complétement immergée
     if facette[5]>0 and facette[8]>0 and facette[11]<=0 :
         [facette[3],facette[4],facette[5]] = pointZ0([facette[9],facette[10],facette[11]],[facette[3],facette[4],facette[5]])
         [facette[6],facette[7],facette[8]] = pointZ0([facette[9],facette[10],facette[11]],[facette[6],facette[7],facette[8]])
@@ -30,7 +32,7 @@ def forcePressanteFacette(facette):
         [facette[6],facette[7],facette[8]] = pointZ0([facette[3],facette[4],facette[5]],[facette[6],facette[7],facette[8]])
 
 
-    if facette[5]<=0 and facette[8]<=0 and facette[11]<=0 :
+    if facette[5]<=0 and facette[8]<=0 and facette[11]<=0 :                                   #Calcul de la partie immergée de la facette
         ab = [facette[6]-facette[3],facette[7]-facette[4],facette[8]-facette[5]]
         ac = [facette[9]-facette[3],facette[10]-facette[4],facette[11]-facette[5]]
         ab_scalaire_ac = [ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]]
@@ -42,7 +44,7 @@ def forcePressanteFacette(facette):
         forcePressante = [surfaceSurNormale[0]*rho*g*z,surfaceSurNormale[1]*rho*g*z,surfaceSurNormale[2]*rho*g*z]
         return forcePressante
 
-    else:
+    else:                                                                           #si la facette n'est pas du tout immergée, la pression sur celle-ci est négligée
         return [0,0,0]
 
 
@@ -51,5 +53,5 @@ def forcePressanteFacette(facette):
 ################################################
 
 #Nous avons pris une facette de façon arbitraire
-objetEtudier = [0,0,1,0,0,-1,1,0,-1,0,1,-1]                             #Après calcul théorique, nous obtenons [0, 0, -4905]
+objetEtudier = [0,0,1,0,0,-1,1,0,-1,0,1,-1]                             #D'après un calcul théorique, nous devons obtenir [0, 0, -4905]
 print(forcePressanteFacette(objetEtudier))
