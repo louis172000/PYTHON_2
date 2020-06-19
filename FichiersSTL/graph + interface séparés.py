@@ -41,7 +41,7 @@ class Affichage(QWidget):
         self.canvas = FigureCanvas(self.fig)
 
         self.axes = plt.axes(projection='3d')
-        self.layout.addWidget(self.canvas, 0, 1, 12, 2)
+        self.layout.addWidget(self.canvas, 0, 1, 11, 2)
 
         # boutons de gauche pour séléctionner la maquette à étudier
         self.label_preenregistre = QLabel("Pré-enregistré :")
@@ -70,6 +70,9 @@ class Affichage(QWidget):
         self.validation.hide()
         self.label_path_non_valide.hide()
 
+
+
+
         self.label1.toggled.connect(lambda: self.checkboxes(
             "FichiersSTL\\Rectangular_HULL_Normals_Outward.STL"))  # utilisation du lambda trouvé sur google
         self.label2.toggled.connect(lambda: self.checkboxes("FichiersSTL\\V_HULL_Normals_Outward.STL"))
@@ -85,16 +88,21 @@ class Affichage(QWidget):
         self.axes_graph = plt.axes()
         self.axes_graph.plot()  # fonction à l'intérieur
         self.image_graph = self.canvas_graph
-        self.layout.addWidget(self.canvas_graph, 0, 3, 12, 2)
+        self.layout.addWidget(self.canvas_graph, 0, 3, 11, 2)
 
         self.affichage_force = QLabel("La position finale est de : ")
         self.layout.addWidget(self.affichage_force, 11, 0, 1, 1)
+
+        self.titre1 = QLabel("Schéma 3D de la maquette")
+        self.titre2 = QLabel("calcul du tirant d'eau par dichotomie")
+        self.layout.addWidget(self.titre1, 11, 2, 1, 1)
+        self.layout.addWidget(self.titre2, 11, 4, 1, 1)
+
         self.setLayout(self.layout)
 
     def graphique_affichage(self):
 
         self.axes.clear()
-
 
         # Load the STL files and add the vectors to the plot
         your_mesh = mesh.Mesh.from_file(self.path)
