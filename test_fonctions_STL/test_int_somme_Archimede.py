@@ -4,7 +4,7 @@
 
 ############## fonction générale ##############
 
-def pointZ0(a,b):
+def pointZ0(a,b):                                               #fonction permettant de trouver le point à z=0 entre un point à z>0 et un point à z<0
     if a[2]!= b[2]:
         xC = ((a[2]*b[0])-(b[2]*a[0]))/(a[2]-b[2])
         yC = ((a[1]*b[2])-(a[2]*b[1]))/(b[2]-a[2])
@@ -16,6 +16,7 @@ def pointZ0(a,b):
 ############## fonction de l'intérieur de la somme de la poussée d'Archimède ##############
 
 def interieurSommeArchimede(facette):
+    #Nous réduisons la facette si elle a deux point à z>0, afin d'avoir sa partie complétement immergée
     if facette[5]>0 and facette[8]>0 and facette[11]<=0 :
         [facette[3],facette[4],facette[5]] = pointZ0([facette[9],facette[10],facette[11]],[facette[3],facette[4],facette[5]])
         [facette[6],facette[7],facette[8]] = pointZ0([facette[9],facette[10],facette[11]],[facette[6],facette[7],facette[8]])
@@ -39,7 +40,7 @@ def interieurSommeArchimede(facette):
         interieurSomme = [surfaceSurNormale[0]*z,surfaceSurNormale[1]*z,surfaceSurNormale[2]*z]
         return interieurSomme
 
-    else:
+    else:                                                                           #si la facette n'est pas du tout immergée, la pression sur celle-ci est négligée
         return [0,0,0]
 
 
@@ -48,5 +49,5 @@ def interieurSommeArchimede(facette):
 ################################################
 
 #Nous avons pris une facette de façon arbitraire
-objetEtudie = [0,0,1,0,0,-1,1,0,-1,0,1,-1]                             #Après calcul théorique, nous obtenons [0, 0, -0.5]
+objetEtudie = [0,0,1,0,0,-1,1,0,-1,0,1,-1]                             #D'après un calcul théorique, nous devons obtenir [0, 0, -0.5]
 print(interieurSommeArchimede(objetEtudie))
